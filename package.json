@@ -32,6 +32,7 @@
     "typescript": "^3.1.1"
   },
   "dependencies": {
+    "jest-matcher-utils": "^24.0.0",
     "pretty-format": "^24.0.0"
   },
   "peerDependencies": {
@@ -46,13 +47,16 @@
     "release": "release-it",
     "prepublish": "yarn build && yarn copy-flowtypes",
     "copy-flowtypes": "flow-copy-source --ignore __tests__/*.js src build",
-    "build": "rm -rf build; babel src --out-dir build --ignore 'src/__tests__/*'"
+    "build": "rm -rf build; babel src --out-dir build --ignore '*/__tests__/*'"
   },
   "jest": {
     "preset": "react-native",
     "moduleFileExtensions": [
       "js",
       "json"
+    ],
+    "setupFilesAfterEnv": [
+      "./testSetup.js"
     ]
   },
   "greenkeeper": {
